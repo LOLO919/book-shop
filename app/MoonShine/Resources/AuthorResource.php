@@ -9,10 +9,7 @@ use App\Models\Author;
 
 use MoonShine\Fields\Text;
 use MoonShine\Resources\ModelResource;
-use MoonShine\Decorations\Block;
 use MoonShine\Fields\ID;
-use MoonShine\Fields\Field;
-use MoonShine\Components\MoonShineComponent;
 
 /**
  * @extends ModelResource<Author>
@@ -49,7 +46,7 @@ class AuthorResource extends ModelResource
     public function indexFields(): array
     {
         return [
-            ID::make(),
+            ID::make()->sortable(),
             Text::make('Name')->sortable(),
             Text::make('Surname')->sortable(),
         ];
@@ -72,5 +69,9 @@ class AuthorResource extends ModelResource
             Text::make('Surname'),
             Text::make('Biography'),
         ];
+    }
+    public function search(): array
+    {
+       return ['surname', 'biography'];
     }
 }
