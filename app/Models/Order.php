@@ -11,6 +11,14 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 class Order extends Model
 {
     use HasFactory;
+
+    public const STATUSES = [
+        'new',
+        'in progress',
+        'completed',
+        'canceled',
+        'finished',
+    ];
     protected $fillable = [
         'user_id',
         'book_id',
