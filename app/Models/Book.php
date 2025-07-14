@@ -19,9 +19,7 @@ class Book extends Model
         'price',
         'count',
     ];
-    protected $casts =[
-        'publication_year'=>'date:Y',
-    ];
+
     public function author(): BelongsTo
     {
         return $this->belongsTo(Author::class);

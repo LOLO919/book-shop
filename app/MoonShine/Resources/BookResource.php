@@ -43,10 +43,10 @@ class BookResource extends ModelResource
         return [
             Text::make('Title'),
             Image::make('Cover')
-            ->dir('covers')
-            ->allowedExtensions(['jpg', 'jpeg', 'png', 'webp'])
-            ->removable()
-            ->nullable(),
+                ->dir('covers')
+                ->allowedExtensions(['jpg', 'jpeg', 'png', 'webp'])
+                ->removable()
+                ->nullable(),
             CKEditor::make('Description')->nullable(),
             Text::make('Publication Year', 'publication_year'),
             BelongsTo::make('Author', formatted: fn($author)=>"$author->name $author->surname"),
