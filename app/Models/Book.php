@@ -11,29 +11,32 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 class Book extends Model
 {
     use HasFactory;
+
     protected $fillable = [
-        'title',
-        'cover',
-        'description',
-        'publication_year',
-        'genre_id',
-        'author_id',
-        'price',
-        'count',
+      'title',
+      'cover',
+      'description',
+      'publication_year',
+      'genre_id',
+      'price',
+      'price',
+      'count',
+    ];
+    protected $casts = [
+      'publication_year' => 'string',
     ];
 
-    public function author(): BelongsTo
+    public function author(): BelongsTo // связываем книгу с автором, Многие ко одному.
     {
         return $this->belongsTo(Author::class);
     }
-
     public function genre(): BelongsTo
     {
         return $this->belongsTo(Genre::class);
     }
 
-    public function scopeExistBooks(Builder $query):void
+    public  function scopeExistBooks(Builder $query): void
     {
-        $query->where('count', '>', 0)->get();
+        $query->where('count', '>', 0);
     }
 }

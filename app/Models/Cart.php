@@ -10,6 +10,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 class Cart extends Model
 {
     use HasFactory;
+
     protected $fillable = [
         'user_id',
         'book_id',
@@ -19,11 +20,11 @@ class Cart extends Model
 
     public function user(): BelongsTo
     {
-        return $this->belongsTo( User::class);
-    }
-    public function books(): BelongsToMany
-    {
-        return $this->belongsToMany( Book::class);
+        return $this->belongsTo(User::class);
     }
 
-};
+    public function books(): BelongsToMany
+    {
+        return $this->belongsToMany(Book::class);
+    }
+}

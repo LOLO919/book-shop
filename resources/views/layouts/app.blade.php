@@ -12,8 +12,8 @@
         <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
 
         <!-- Favicons -->
-        <link rel="shortcut icon" href="{{asset('assets/images/favicon.ico') }}">
-        <link rel="apple-touch-icon" href="{{asset('assets/images/icon.png') }}">
+        <link rel="shortcut icon" href="{{ asset('assets/image/favicon.ico') }}">
+        <link rel="apple-touch-icon" href="{{ asset('assets/image/icon.ico') }}">
 
         <!-- Google font (font-family: 'Roboto', sans-serif; Poppins ; Satisfy) -->
         <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800" rel="stylesheet">
@@ -21,15 +21,15 @@
         <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900" rel="stylesheet">
 
         <!-- Stylesheets -->
-        <link rel="stylesheet" href="{{asset('assets/css/bootstrap.min.css') }}">
-        <link rel="stylesheet" href="{{asset('assets/css/plugins.css') }}">
-        <link rel="stylesheet" href="{{asset('assets/style.css') }}">
+        <link rel="stylesheet" href="{{ asset('assets/css/bootstrap.min.css') }}">
+        <link rel="stylesheet" href="{{ asset('assets/css/plugins.css') }}">
+        <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
 
         <!-- Cusom css -->
-        <link rel="stylesheet" href="{{asset('assets/css/custom.css') }}">
+        <link rel="stylesheet" href="{{ asset('assets/css/custom.css') }}">
 
         <!-- Modernizer js -->
-        <script src="{{asset('assets/js/vendor/modernizr-3.5.0.min.js') }}"></script>
+        <script src="{{ asset('assets/js/vendor/modernizr-3.5.0.min.js') }}"></script>
 
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
@@ -62,8 +62,8 @@
                             <div class="col-lg-12">
                                 <div class="footer__widget footer__menu">
                                     <div class="ft__logo">
-                                        <a href="{{route('index')}}">
-                                            <img src="{{asset('assets/images/logo/3.png')}}" alt="logo">
+                                        <a href="{{  route('index') }}">
+                                            <img src="{{ asset('assets/images/logo/3.png') }}" alt="logo">
                                         </a>
                                         <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered duskam alteration variations of passages</p>
                                     </div>
@@ -109,14 +109,15 @@
                 </div>
             </footer>
             <!-- //Footer Area -->
+
         </div>
         <!-- //Main wrapper -->
 
         <!-- JS Files -->
-        <script src="{{asset('assets/js/vendor/jquery-3.2.1.min.js')}}"></script>
-        <script src="{{asset('assets/js/popper.min.js')}}"></script>
-        <script src="{{asset('assets/js/bootstrap.min.js')}}"></script>
-        <script src="{{asset('assets/js/plugins.js')}}"></script>
-        <script src="{{asset('assets/js/active.js')}}"></script>
+        <script src="{{ asset('assets/js/vendor/jquery-3.2.1.min.js') }}"></script>
+        <script src="{{ asset('assets/js/popper.min.js') }}"></script>
+        <script src="{{ asset('assets/js/bootstrap.min.js') }}"></script>
+        <script src="{{ asset('assets/js/plugins.js') }}"></script>
+        <script src="{{ asset('assets/js/active.js') }}"></script>
     </body>
 </html>

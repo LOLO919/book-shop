@@ -3,9 +3,11 @@
 namespace App\Providers;
 
 use App\Models\Cart;
+use App\Models\Genre;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
+use MoonShine\Tests\Fixtures\Models\Category;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -22,10 +24,16 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-       View:: share('cart',
-           Cart::query()
-               ->where('user_id', Auth::id())
-               ->first()
-       );
+        View::share('cart',
+            Cart::query()
+            ->where('user_id', Auth::id())
+            ->first()
+        );
+
+        View::share(
+            'genres',
+            Genre::all()
+            ->pluck('name', 'id')
+        );
     }
 }

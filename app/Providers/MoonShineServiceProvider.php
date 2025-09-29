@@ -6,6 +6,7 @@ namespace App\Providers;
 
 use App\MoonShine\Resources\AuthorResource;
 use App\MoonShine\Resources\BookResource;
+use App\MoonShine\Resources\ContactResource;
 use App\MoonShine\Resources\GenreResource;
 use App\MoonShine\Resources\OrderResource;
 use App\MoonShine\Resources\UserResource;
@@ -66,11 +67,6 @@ class MoonShineServiceProvider extends MoonShineApplicationServiceProvider
             ),
 
             MenuItem::make(
-                'Genres',
-                new GenreResource()
-            ),
-
-            MenuItem::make(
                 'Orders',
                 new OrderResource()
             ),
@@ -80,10 +76,22 @@ class MoonShineServiceProvider extends MoonShineApplicationServiceProvider
                 new UserResource()
             ),
 
+            MenuItem::make(
+                'Genres',
+                new GenreResource()
+            ),
+
+            MenuItem::make(
+                'Contacts',
+                new ContactResource()
+            ),
+
             MenuItem::make('Documentation', 'https://moonshine-laravel.com/docs')
                 ->badge(fn() => 'Check')
                 ->blank(),
         ];
+
+
     }
 
     /**

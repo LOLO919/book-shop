@@ -7,8 +7,7 @@ namespace App\MoonShine\Resources;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Order;
 
-use MoonShine\CKEditor\Fields\CKEditor;
-use MoonShine\Fields\Image;
+use MoonShine\Fields\Field;
 use MoonShine\Fields\Number;
 use MoonShine\Fields\Relationships\BelongsTo;
 use MoonShine\Fields\Relationships\HasMany;
@@ -17,7 +16,6 @@ use MoonShine\Fields\Text;
 use MoonShine\Resources\ModelResource;
 use MoonShine\Decorations\Block;
 use MoonShine\Fields\ID;
-use MoonShine\Fields\Field;
 use MoonShine\Components\MoonShineComponent;
 
 /**
@@ -32,10 +30,10 @@ class OrderResource extends ModelResource
     public function indexFields(): array
     {
         return [
-            ID::make()->sortable(),
-            BelongsTo::make('User', formatted: 'name'),
+            ID::make(),
+            BelongsTo::make('User', formatted: 'name')->sortable(),
             HasMany::make('Books', resource: new BookResource())
-            ->onlyLink(condition:function (int$count,Field $field):bool {
+            ->onlylink(condition: function (int $count, Field $field): bool {
                 return $count > 10;
             }),
             Number::make('Total cost', 'total_cost'),
@@ -51,13 +49,13 @@ class OrderResource extends ModelResource
             ID::make(),
             BelongsTo::make('User', formatted: 'name')->disabled(),
             HasMany::make('Books', resource: new BookResource())
-                ->onlyLink(condition:function (int$count,Field $field):bool {
+                ->onlylink(condition: function (int $count, Field $field): bool {
                     return $count > 10;
                 })
-            ->disabled(),
-            Number::make('Total cost', 'total_cost'),
+                ->disabled(),
+            Number::make('Total cost', 'total_cost')->disabled(),
             Select::make('Status')
-                ->options(Order::STATUSES)
+                ->options(Order::STATUSES),
         ];
     }
 
@@ -67,11 +65,11 @@ class OrderResource extends ModelResource
             ID::make(),
             BelongsTo::make('User', formatted: 'name')->disabled(),
             HasMany::make('Books', resource: new BookResource())
-                ->onlyLink(condition:function (int$count,Field $field):bool {
+                ->onlylink(condition: function (int $count, Field $field): bool {
                     return $count > 10;
                 })
                 ->disabled(),
-            Number::make('Total cost', 'total_cost'),
+            Number::make('Total cost', 'total_cost')->disabled(),
             Select::make('Status')
                 ->options(Order::STATUSES),
         ];

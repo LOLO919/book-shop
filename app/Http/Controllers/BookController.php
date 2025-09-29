@@ -13,7 +13,7 @@ class BookController extends Controller
      */
     public function index()
     {
-       return Book::all();
+        return Book::existBooks()->get();
     }
 
     /**
@@ -21,6 +21,7 @@ class BookController extends Controller
      */
     public function create()
     {
+        //
         return view('store_book');
     }
 
@@ -29,20 +30,19 @@ class BookController extends Controller
      */
     public function store(StoreRequest $request)
     {
-        $data = $request->validated();
-
+        $data = $request->validated(); // отладка, проверка как пройдёт валидация. damp and die.
         $book = new Book();
-        $book ->fill($data);
+        $book->fill($data); // заполнить данными.
         dd($book);
-        return $book->save();
+        return $book->save(); // сохранить в db.
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Book $book)
+    public function show(Book $book): \Illuminate\Contracts\View\Factory|\Illuminate\Foundation\Application|\Illuminate\Contracts\View\View|\Illuminate\Contracts\Foundation\Application
     {
-       return $book;
+        return view('book_show', compact('book'));
     }
 
     /**

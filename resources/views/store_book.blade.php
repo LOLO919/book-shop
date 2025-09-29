@@ -1,4 +1,3 @@
-
 <form method="POST" action="{{ route('books.store') }}" multiple="">
     @csrf
     @if ($errors->any())
@@ -10,30 +9,29 @@
             </ul>
         </div>
     @endif
-    Название
     <input type="text" name="title" id="title" required>
     <br>
-   Обложка
-    <input type="file" name="cover" id="cover" >
+    Обложка:
+    <input type="file" name="cover" id="cover">
     <br>
-    Описание
+    Описание:
     <input type="text" name="description" id="description">
     <br>
-    Год издания
-    <input type="number" name="publication_year" id="publication_year"required >
+    Год издания:
+    <input type="number" name="publication_year" id="publication_year" required>
     <br>
-    Жанр (id)
+    Жанр (id):
     <input type="text" name="genre_id" id="genre_id" required>
     <br>
-    Автор(id)
+    Автор (id):
     <input type="text" name="author_id" id="author_id" required>
     <br>
-    Цена
+    Цена:
     <input type="number" name="price" id="price" required>
     <br>
-    Количество
+    Количество:
     <input type="number" name="count" id="count" required>
     <br>
 
-    <input type="submit" value="book">
+    <input type="submit" value="create">
 </form>

@@ -23,10 +23,14 @@ class GenreResource extends ModelResource
 
     protected string $title = 'Genres';
 
+    /**
+     * @return list<MoonShineComponent|Field>
+     */
+
     public function indexFields(): array
     {
         return [
-            ID::make()->sortable(),
+            ID::make(),
             Text::make('Name')->sortable(),
         ];
     }
@@ -34,6 +38,7 @@ class GenreResource extends ModelResource
     public function formFields(): array
     {
         return [
+            ID::make(),
             Text::make('Name'),
         ];
     }

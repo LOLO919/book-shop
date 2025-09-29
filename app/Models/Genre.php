@@ -9,11 +9,10 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 class Genre extends Model
 {
     use HasFactory;
-    protected $fillable = [
-        'name',
-    ];
+
+    protected $fillable = ['name'];
     public function books(): HasMany
     {
-        return $this->hasMany( Book::class);
+        return $this->hasMany(Book::class);
     }
 }

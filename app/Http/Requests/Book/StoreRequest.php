@@ -22,14 +22,14 @@ class StoreRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'title'=>['required','string','min:3','max:255'],
-            'cover'=> ['nullable','image','mimes:jpeg,jpg,png','max:2048'],
-            'description'=>['nullable','string','min:3','max:255'],
-            'publication_year'=>['required','date_format:Y'],
-            'genre_id'=>['required'],//,'exists:genres,id'],
-            'author_id'=>['required'],//,'exists:authors,id'],
-            'price'=>['required','numeric'],
-            'count'=>['required','integer','min:0'],
+            'title' => ['required', 'string', 'min:3', 'max:255'],
+            'cover' => ['nullable', 'image', 'mimes:jpeg', 'max:2048'],
+            'description' => ['nullable', 'string', 'min:3', 'max:255'],
+            'publication_year' => ['required', 'date_format:Y'],
+            'genre_id' => ['required'],// 'exists:genres,id'], // такой жанр должен существовать.
+            'author_id' => ['required'],// 'exists:authors,id'], // такой автор должен существовать.
+            'price' => ['required', 'numeric'],
+            'count' => ['required', 'integer', 'min:0'],
         ];
     }
 }

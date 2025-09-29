@@ -13,49 +13,24 @@
                 <div class="col-lg-8 d-none d-lg-block">
                     <nav class="mainmenu__nav">
                         <ul class="meninmenu d-flex justify-content-start">
-                            <li class="drop with--one--item"><a href="{{ route('index') }}">Home</a>
-                                <div class="megamenu dropdown">
-                                    <ul class="item item01">
-                                        <li><a href="index.html">Home Style Default</a></li>
-                                    </ul>
-                                </div>
+                            <li class="drop with--one--item">
+                                <a href="{{ route('index') }}">Home</a>
                             </li>
-                            <li class="drop"><a href="#">Shop</a>
+                            <li class="drop">
+                                <a href="{{ route('books.index') }}">Shop</a>
                                 <div class="megamenu mega03">
                                     <ul class="item item03">
-                                        <li class="title">Shop Layout</li>
+                                        @foreach($genres as $key => $value)
+                                            <a href="{{ route('genres.show', $key) }}">
+                                                <li class="title">{{ $value }}</li>
+                                            </a>
+                                        @endforeach
                                     </ul>
                                 </div>
                             </li>
-                            <li class="drop"><a href="shop-grid.html">Books</a>
-                                <div class="megamenu mega03">
-                                    <ul class="item item03">
-                                        <li class="title">Categories</li>
-                                    </ul>
-                                </div>
+                            <li>
+                                <a href="{{ route('contacts.show') }}">Contact</a>
                             </li>
-                            <li class="drop"><a href="shop-grid.html">Kids</a>
-                                <div class="megamenu mega02">
-                                    <ul class="item item02">
-                                        <li class="title">Top Collections</li>
-                                    </ul>
-                                </div>
-                            </li>
-                            <li class="drop"><a href="#">Pages</a>
-                                <div class="megamenu dropdown">
-                                    <ul class="item item01">
-                                        <li><a href="about.html">About Page</a></li>
-                                    </ul>
-                                </div>
-                            </li>
-                            <li class="drop"><a href="blog.html">Blog</a>
-                                <div class="megamenu dropdown">
-                                    <ul class="item item01">
-                                        <li><a href="blog.html">Blog Page</a></li>
-                                    </ul>
-                                </div>
-                            </li>
-                            <li><a href="contact.html">Contact</a></li>
                         </ul>
                     </nav>
                 </div>
@@ -71,9 +46,9 @@
                                     <div class="micart__close">
                                         <span>close</span>
                                     </div>
-                                    @if(!$cart ||  $cart->count <= 0)
+                                    @if (!$cart || $cart->count <= 0)
                                         <div class="content">
-                                            <h6>Your cart is empty!</h6>
+                                            <h6>Yuor cart is empty</h6>
                                         </div>
                                     @else
                                         <div class="items-total d-flex justify-content-between">
@@ -81,7 +56,7 @@
                                             <span>Cart Subtotal</span>
                                         </div>
                                         <div class="total_amount text-right">
-                                            <span>&#x20bd;{{ $cart->total_cost }}</span>
+                                            <span>&#x20bd; {{ $cart->total_cost }}</span>
                                         </div>
                                         <div class="mini_action checkout">
                                             <a class="checkout__btn" href="cart.html">Go to Checkout</a>
@@ -89,22 +64,22 @@
                                         <div class="single__items">
                                             <div class="miniproduct">
                                                 @foreach($cart->books as $book)
-                                                <div class="item01 d-flex">
-                                                    <div class="thumb">
-                                                        <a href="product-details.html"><img src="images/product/sm-img/1.jpg" alt="product images"></a>
-                                                    </div>
-                                                    <div class="content">
-                                                        <h6><a href="product-details.html">{{$book->title}}</a></h6>
-                                                        <span class="prize">&#x20bd; {{ $book->price }}</span>
-                                                        <div class="product_prize d-flex justify-content-between">
-                                                            <span class="qun">Qty: {{$book->pivot->quantity}}}</span>
-                                                            <ul class="d-flex justify-content-end">
-                                                                <li><a href="#"><i class="zmdi zmdi-settings"></i></a></li>
-                                                                <li><a href="#"><i class="zmdi zmdi-delete"></i></a></li>
-                                                            </ul>
+                                                    <div class="item01 d-flex">
+                                                        <div class="thumb">
+                                                            <a href="product-details.html"><img src="images/product/sm-img/1.jpg" alt="product images"></a>
+                                                        </div>
+                                                        <div class="content">
+                                                            <h6><a href="product-details.html">{{ $book->title }}</a></h6>
+                                                            <span class="prize">&#x20bd; {{ $book->price }}</span>
+                                                            <div class="product_prize d-flex justify-content-between">
+                                                                <span class="qun">Qty: {{ $book->pivot->quantity }}</span>
+                                                                <ul class="d-flex justify-content-end">
+                                                                    <li><a href="#"><i class="zmdi zmdi-settings"></i></a></li>
+                                                                    <li><a href="#"><i class="zmdi zmdi-delete"></i></a></li>
+                                                                </ul>
+                                                            </div>
                                                         </div>
                                                     </div>
-                                                </div>
                                                 @endforeach
                                             </div>
                                         </div>
@@ -127,15 +102,15 @@
                                             <div class="switcher-options">
                                                 <div class="switcher-currency-trigger">
                                                     <div class="setting__menu">
-                                                        <span><a href="{{route('profile.edit')}}">Profile</a></span>
+                                                        <span><a href="{{ route('profile.edit') }}">Profile</a></span>
                                                         <span>
                                                             <form method="POST" action="{{ route('logout') }}">
                                                                 @csrf
 
                                                                 <x-dropdown-link :href="route('logout')"
                                                                                  onclick="event.preventDefault();
-                                                                                    this.closest('form').submit();">
-                                                                    Log Out
+                                                                                this.closest('form').submit();">
+                                                                    Log out
                                                                 </x-dropdown-link>
                                                             </form>
                                                         </span>
@@ -144,7 +119,7 @@
                                             </div>
                                         </div>
                                     @else
-                                        <a href="{{ route('login') }}">Log In</a>
+                                        <a href="{{ route('login') }}">Log in</a>
                                     @endauth
                                 </div>
                             </div>
@@ -213,42 +188,4 @@
         </div>
     </header>
     <!-- //Header -->
-    <!-- Primary Navigation Menu -->
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="flex justify-between h-16">
-            <!-- Settings Dropdown -->
-            <div class="hidden sm:flex sm:items-center sm:ms-6">
-                <x-dropdown align="right" width="48">
-                    <x-slot name="trigger">
-                        <button class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 bg-white hover:text-gray-700 focus:outline-none transition ease-in-out duration-150">
-                            <div>{{ Auth::user()->name ?? '' }}</div>
-
-                            <div class="ms-1">
-                                <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-                                    <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
-                                </svg>
-                            </div>
-                        </button>
-                    </x-slot>
-
-                    <x-slot name="content">
-                        <x-dropdown-link :href="route('profile.edit')">
-                            {{ __('Profile') }}
-                        </x-dropdown-link>
-
-                        <!-- Authentication -->
-                        <form method="POST" action="{{ route('logout') }}">
-                            @csrf
-
-                            <x-dropdown-link :href="route('logout')"
-                                    onclick="event.preventDefault();
-                                                this.closest('form').submit();">
-                                {{ __('Log Out') }}
-                            </x-dropdown-link>
-                        </form>
-                    </x-slot>
-                </x-dropdown>
-            </div>
-        </div>
-    </div>
 </nav>

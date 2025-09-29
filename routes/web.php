@@ -1,5 +1,10 @@
 <?php
 
+use App\Http\Controllers\AuthorController;
+use App\Http\Controllers\BookController;
+use App\Http\Controllers\CartController;
+use App\Http\Controllers\ContactController;
+use App\Http\Controllers\GenreController;
 use App\Http\Controllers\IndexController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
@@ -15,7 +20,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [IndexController::class, 'index'])->name('index');
+Route::get( '/', [IndexController::class, 'index'])->name('index');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -25,7 +30,13 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    Route::resource('/cart', CartController::class)->except(['index','create']);
 });
-Route::resource('/books',\App\Http\Controllers\BookController::class);
+
+Route::resource('/books', BookController::class);
+Route::resource('/books', BookController::class); // создаём маршруты для всех методов
+Route::get('/authors/{author}', [AuthorController::class, 'show'])->name('authors.show');
+Route::get('/genres/{genre}', [GenreController::class, 'show'])->name('genres.show');
+Route::get('/contacts', [ContactController::class, 'show'])->name('contacts.show');
 
 require __DIR__.'/auth.php';

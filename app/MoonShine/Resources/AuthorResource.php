@@ -7,9 +7,13 @@ namespace App\MoonShine\Resources;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Author;
 
+use MoonShine\Fields\Image;
 use MoonShine\Fields\Text;
 use MoonShine\Resources\ModelResource;
+use MoonShine\Decorations\Block;
 use MoonShine\Fields\ID;
+use MoonShine\Fields\Field;
+use MoonShine\Components\MoonShineComponent;
 
 /**
  * @extends ModelResource<Author>
@@ -31,18 +35,6 @@ class AuthorResource extends ModelResource
 //            ]),
 //        ];
 //    }
-
-    /**
-     * @param Author $item
-     *
-     * @return array<string, string[]|string>
-     * @see https://laravel.com/docs/validation#available-validation-rules
-     */
-    public function rules(Model $item): array
-    {
-        return [];
-    }
-
     public function indexFields(): array
     {
         return [
@@ -55,9 +47,14 @@ class AuthorResource extends ModelResource
     public function formFields(): array
     {
         return [
+            ID::make(),
             Text::make('Name'),
             Text::make('Surname'),
             Text::make('Biography')->nullable(),
+            Image::make('Photo')
+                ->dir('authors_photo')
+                ->allowedExtensions(['jpg', 'jpeg', 'png', 'webp'])
+                ->removable(),
         ];
     }
 
@@ -68,10 +65,24 @@ class AuthorResource extends ModelResource
             Text::make('Name'),
             Text::make('Surname'),
             Text::make('Biography'),
+            Image::make('Photo'),
         ];
     }
     public function search(): array
     {
-       return ['surname', 'biography'];
+        return [
+            'surname',
+            'biography',
+        ];
+    }
+    /**
+     * @param Author $item
+     *
+     * @return array<string, string[]|string>
+     * @see https://laravel.com/docs/validation#available-validation-rules
+     */
+    public function rules(Model $item): array
+    {
+        return [];
     }
 }
