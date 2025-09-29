@@ -31,7 +31,7 @@ class CartController extends Controller
             $cart->save();
         }
 
-        return $cart;
+        return redirect()->back();
     }
 
     /**
