@@ -20,9 +20,16 @@ RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/bin -
 
 RUN docker-php-ext-install \
     pdo \
-    pdo-mysql \
+    pdo_mysql \
     intl \
     zip \
     soap \
     bcmath \
     exif
+
+RUN set -ex \
+    && apk add --no-cache --virtual .build-deps $PHPIZE_DEPS \
+    && docker-php-ext-install pdo_mysql \
+    && apk del .build-deps
+
+RUN docker-php-ext-enable pdo_mysql
